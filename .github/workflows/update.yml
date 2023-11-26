@@ -1,0 +1,30 @@
+name: 'Update'
+
+on:
+  schedule:
+    - cron:  '0 7 * * 1'
+    # scheduled at 07:00 every Monday
+
+  workflow_dispatch:  # click the button on Github repo!
+
+jobs:
+  update:
+    runs-on: ubuntu-latest
+    name: Update
+
+    steps:
+    - uses: actions/checkout@master
+      with:
+        persist-credentials: false # otherwise, the token used is the GITHUB_TOKEN, instead of your personal token
+        fetch-depth: 0 # otherwise, you will failed to push refs to dest repo
+
+    - name: Run update.sh
+      run: |
+        chmod +x ./update.sh
+        ./update.sh
+    
+    - name: Commit & Push changes
+      uses: actions-js/push@master
+      with:
+        github_token: ${{ secrets.GITHUB_TOKEN }}
+    

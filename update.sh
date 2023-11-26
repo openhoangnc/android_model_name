@@ -34,5 +34,4 @@ git add .
 # if there are changes
 if [ -n "$(git status --porcelain)" ]; then
     git commit -m "Update devices on $(date +%Y-%m-%d)"
-    git push origin master
 fi
