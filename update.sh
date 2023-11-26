@@ -24,10 +24,20 @@ for line in "${csvLines[@]}" ; do
         fi
         #if not exist create device file with marketing_name content
         if [ ! -f "$brand/$device" ]; then
+            # if device contains "/"
+            if [[ "$device" == *"/"* ]]; then
+                # replace "/" with "-"
+                device=$(echo "$device" | sed 's/\//-/g')
+            fi
             echo "$marketing_name" > "$brand/$device"
         fi
         #if not exist create model file with marketing_name content
         if [ ! -f "$brand/$model" ]; then
+            # if model contains "/"
+            if [[ "$model" == *"/"* ]]; then
+                # replace "/" with "-"
+                model=$(echo "$model" | sed 's/\//-/g')
+            fi
             echo "$marketing_name" > "$brand/$model"
         fi
     fi
