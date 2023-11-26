@@ -1,0 +1,1 @@
+LG Optimus L7
