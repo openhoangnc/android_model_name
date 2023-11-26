@@ -19,19 +19,19 @@ for line in "${csvLines[@]}" ; do
     if [ "$brand" != "" ] && [ "$marketing_name" != "" ] && [ "$model" != "" ]; then
         #if not exist create brand folder
         if [ ! -d "$brand" ]; then
-            mkdir $brand
+            mkdir "$brand"
         fi
-        #if not exist create device file with marketing_name content
-        if [ ! -f "$brand/$device" ]; then
-            echo $marketing_name > $brand/$device
+        #if not exist create model file with marketing_name content
+        if [ ! -f "$brand/$model" ]; then
+            echo "$marketing_name" > "$brand/$model"
         fi
     fi
 done
 
-rm -f supported_devices.csv
+# rm -f supported_devices.csv
 
-git add .
-# if there are changes
-if [ -n "$(git status --porcelain)" ]; then
-    git commit -m "Update devices on $(date +%Y-%m-%d)"
-fi
+# git add .
+# # if there are changes
+# if [ -n "$(git status --porcelain)" ]; then
+#     git commit -m "Update devices on $(date +%Y-%m-%d)"
+# fi
