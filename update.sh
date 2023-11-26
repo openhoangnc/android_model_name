@@ -15,11 +15,16 @@ unset csvLines[0]
 for line in "${csvLines[@]}" ; do
     brand=$(echo $line | cut -d ',' -f 1)
     marketing_name=$(echo $line | cut -d ',' -f 2)
+    device=$(echo $line | cut -d ',' -f 3)
     model=$(echo $line | cut -d ',' -f 4)
-    if [ "$brand" != "" ] && [ "$marketing_name" != "" ] && [ "$model" != "" ]; then
+    if [ "$brand" != "" ] && [ "$marketing_name" != "" ] && [ "$device" != ""] && [ "$model" != "" ] ; then
         #if not exist create brand folder
         if [ ! -d "$brand" ]; then
             mkdir "$brand"
+        fi
+        #if not exist create device file with marketing_name content
+        if [ ! -f "$brand/$device" ]; then
+            echo "$marketing_name" > "$brand/$device"
         fi
         #if not exist create model file with marketing_name content
         if [ ! -f "$brand/$model" ]; then
@@ -29,9 +34,3 @@ for line in "${csvLines[@]}" ; do
 done
 
 rm -f supported_devices.csv
-
-git add .
-# if there are changes
-if [ -n "$(git status --porcelain)" ]; then
-    git commit -m "Update devices on $(date +%Y-%m-%d)"
-fi
