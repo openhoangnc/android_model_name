@@ -28,10 +28,10 @@ for line in "${csvLines[@]}" ; do
     fi
 done
 
-# rm -f supported_devices.csv
+rm -f supported_devices.csv
 
-# git add .
-# # if there are changes
-# if [ -n "$(git status --porcelain)" ]; then
-#     git commit -m "Update devices on $(date +%Y-%m-%d)"
-# fi
+git add .
+# if there are changes
+if [ -n "$(git status --porcelain)" ]; then
+    git commit -m "Update devices on $(date +%Y-%m-%d)"
+fi
