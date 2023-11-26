@@ -17,7 +17,7 @@ for line in "${csvLines[@]}" ; do
     marketing_name=$(echo $line | cut -d ',' -f 2)
     device=$(echo $line | cut -d ',' -f 3)
     model=$(echo $line | cut -d ',' -f 4)
-    if [ "$brand" != "" ] && [ "$marketing_name" != "" ] && [ "$device" != ""] && [ "$model" != "" ] ; then
+    if [ "$brand" != "" ] && [ "$marketing_name" != "" ] && [ "$device" != "" ] && [ "$model" != "" ] ; then
         if [ ! -d "$brand" ]; then
             mkdir "$brand"
         fi
