@@ -2,7 +2,7 @@ name: 'Update'
 
 on:
   schedule:
-    - cron:  '0 7 * * 1'
+    - cron:  '0 7 * * 1,3,5'
     # scheduled at 07:00 every Monday
 
   workflow_dispatch:  # click the button on Github repo!
